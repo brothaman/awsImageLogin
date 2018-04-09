@@ -3,6 +3,7 @@ import botocore
 import os
 import pylint
 
+# before this program is run you will need to run `aws configure` to set your aws credentials
 resource = boto3.resource('s3')
 client = boto3.client('s3')
 rekognition = boto3.client('rekognition')
@@ -23,19 +24,11 @@ def createBucket(bucketName):
 	
 def getBucketTree(bucketName):
 	bucket = resource.Bucket(bucketName)
-	bucketList = list(bucket.objects.all())
-	return bucketList
-	#return list(map(lambda x: x.key, bucket.objects.all()))
-'''	for item in bucket.objects.all():
-		#bucketList.append(item.key.split('/'))
-		bucketList.append(item)
-	return bucketList'''
+	return list(bucket.objects.all())
 
 def getUserList(bucketName):
 	bucketList = getBucketTree(bucketName)
-	userList = [] # userList[0] = User's Name, userList[1] = list of all locations
-	#for items in bucketList:
-	#	if item.startswith('Users/'):
+	userList = []
 
 def uploadAndDelete(pathToDir, bucketName):
 	# Uploads file to s3 bucket and deletes it
