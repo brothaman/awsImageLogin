@@ -14,6 +14,8 @@ class person:
     lastname = 'no_name_set'
     email = 'no_email_set'
     bucket_location = 'no_location_set'
+    photo_locations = []
+    photo_count = 0
     def person_from_csvline(self, line):
         self.firstname,self.lastname,self.email,self.bucket_location = line
 
